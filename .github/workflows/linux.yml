@@ -14,5 +14,5 @@ jobs:
       # https://stackoverflow.com/a/59536836
       run: |
         echo "Push event received!"
-        echo "${{ toJSON(github.event) }}"
-        echo "${{ github.event.commits.length }}"
+        echo "before = ${{ github.event.before }}"
+        echo "after = ${{ github.event.after }}"
