@@ -10,8 +10,10 @@ jobs:
         submodules: true
 
     - name: Test event
-      run: echo "Push event received!""
-      run: echo "${{ toJSON(github) }}"
+      # https://stackoverflow.com/a/59536836
+      run: |
+        echo "Push event received!""
+        echo "${{ toJSON(github) }}"
 
     # - name: Build with tinyconfig
     #     run: ./build-linux.sh ./linux tinyconfig
