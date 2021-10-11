@@ -27,4 +27,4 @@ jobs:
         SUB_NEW=$(git rev-parse $NEW:linux)
         echo "sub before = $SUB_PREV"
         echo "sub after = $SUB_NEW"
-        if [[ $SUB_PREV != $SUB_NEW ]]; then echo "Changed!"; done
+        if [[ $SUB_PREV != $SUB_NEW ]]; then echo "Changed!"; fi
