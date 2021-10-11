@@ -7,14 +7,21 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
       with:
-        submodules: true
         fetch-depth: 0
 
     - name: Test event
       # https://stackoverflow.com/a/59536836
+      env:
+        PREV: ${{ github.event.before }}
+        NEW: ${{ github.event.after }}
       run: |
         echo "Push event received!"
-        echo "before = ${{ github.event.before }}"
-        echo "after = ${{ github.event.after }}"
-        echo "sub before = $(git rev-parse ${{ github.event.before }})"
-        echo "sub after = $(git rev-parse ${{ github.event.after }})"
+        echo "before = $PREV"
+        echo "after = $NEW"
+
+    - name: Conditional test
+      if: $PREV != $NEW
+      run: |
+        echo "$PREV != $NEW"
+        echo "sub before = $(git rev-parse $PREV)"
+        echo "sub after = $(git rev-parse $NEW)"
