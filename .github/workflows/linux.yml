@@ -1,4 +1,4 @@
-name: HW 2
+name: HW 2 Part C-1
 on:
   push:
     paths:
@@ -15,14 +15,14 @@ jobs:
       shell: bash
       run: ./install-deps.sh
 
-    - name: Get linux submodule
+    - name: Get Linux Submodule
       shell: bash
       run: |
         COMMIT=$(git rev-parse HEAD:linux)
         echo "linux commit: $COMMIT"
         wget -q "https://github.com/JHH20/linux/archive/${COMMIT}.zip"
 
-    - name: Build linux kernel
+    - name: Build Linux Kernel
       shell: bash
       run: |
         unzip -q *.zip -d linux
