@@ -1,0 +1,18 @@
+name: HW 2
+on: push
+jobs:
+    build-kernel:
+        # https://stackoverflow.com/a/59775665
+        runs-on: ubuntu-20.04
+        steps:
+        # https://github.com/actions/checkout
+        - uses: actions/checkout@v2
+        - with:
+            submodules: true
+
+        - name: Test event
+            run: echo "Push event received!"
+            run: echo ${{ toJSON(github) }}
+
+        # - name: Build with tinyconfig
+        #     run: ./build-linux.sh ./linux tinyconfig
