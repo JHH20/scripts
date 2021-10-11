@@ -23,10 +23,8 @@ jobs:
     - name: Conditional test
       shell: bash
       run: |
-        echo "before = $PREV"
-        echo "after = $NEW"
-        SUB_PREV=$(git rev-parse $PREV:linux)
-        SUB_NEW=$(git rev-parse $NEW:linux)
+        SUB_PREV=$(git rev-parse ${{ github.event.before }}:linux)
+        SUB_NEW=$(git rev-parse ${{ github.event.after }}:linux)
         echo "sub before = $SUB_PREV"
         echo "sub after = $SUB_NEW"
         if [[ $SUB_PREV != $SUB_NEW ]]; then echo "Changed!"; fi
