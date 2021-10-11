@@ -8,7 +8,7 @@ jobs:
       uses: actions/checkout@v2
       with:
         submodules: true
-        fetch-depth: 1
+        fetch-depth: 0
 
     - name: Test event
       # https://stackoverflow.com/a/59536836
@@ -16,3 +16,5 @@ jobs:
         echo "Push event received!"
         echo "before = ${{ github.event.before }}"
         echo "after = ${{ github.event.after }}"
+        echo "sub before = $(git rev-parse ${{ github.event.before }})"
+        echo "sub after = $(git rev-parse ${{ github.event.after }})"
