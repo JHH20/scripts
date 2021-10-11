@@ -16,10 +16,12 @@ jobs:
       run: |
         COMMIT=$(git rev-parse HEAD:linux)
         echo "linux commit: $COMMIT"
-        wget "https://github.com/JHH20/linux/archive/${COMMIT}.zip"
+        wget -q "https://github.com/JHH20/linux/archive/${COMMIT}.zip"
 
     - name: Build linux kernel
       shell: bash
       run: |
-        unzip *.zip -d linux
+        unzip -q *.zip -d linux
+        echo $(ls linux)
+        ./install-deps.sh
         ./build-linux.sh linux tinyconfig
