@@ -22,6 +22,4 @@ jobs:
       shell: bash
       run: |
         unzip -q *.zip -d linux
-        echo $(ls linux)
-        ./install-deps.sh
-        ./build-linux.sh linux tinyconfig
+        ./build-linux.sh linux/* tinyconfig
