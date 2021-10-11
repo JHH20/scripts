@@ -20,7 +20,7 @@ jobs:
         echo "after = $NEW"
 
     - name: Conditional test
-      if: $PREV != $NEW
+      if: env.PREV != env.NEW
       run: |
         echo "$PREV != $NEW"
         echo "sub before = $(git rev-parse $PREV)"
