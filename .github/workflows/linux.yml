@@ -23,6 +23,8 @@ jobs:
     - name: Conditional test
       shell: bash
       run: |
+        echo "before = $PREV"
+        echo "after = $NEW"
         SUB_PREV=$(git rev-parse $PREV:linux)
         SUB_NEW=$(git rev-parse $NEW:linux)
         echo "sub before = $SUB_PREV"
