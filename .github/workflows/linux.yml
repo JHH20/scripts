@@ -14,14 +14,17 @@ jobs:
       env:
         PREV: ${{ github.event.before }}
         NEW: ${{ github.event.after }}
+      shell: bash
       run: |
         echo "Push event received!"
         echo "before = $PREV"
         echo "after = $NEW"
 
     - name: Conditional test
-      if: env.PREV != env.NEW
+      shell: bash
       run: |
-        echo "$PREV != $NEW"
-        echo "sub before = $(git rev-parse $PREV)"
-        echo "sub after = $(git rev-parse $NEW)"
+        SUB_PREV=$(git rev-parse $PREV:linux)
+        SUB_NEW=$(git rev-parse $NEW:linux)
+        echo "sub before = $SUB_PREV"
+        echo "sub after = $SUB_NEW"
+        if [[ $SUB_PREV != $SUB_NEW ]]; then echo "Changed!"; done
