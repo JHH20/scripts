@@ -11,6 +11,10 @@ jobs:
     - name: Checkout repository
       uses: actions/checkout@v2
 
+    - name: Install Dependencies
+      shell: bash
+      run: ./install-deps.sh
+
     - name: Get linux submodule
       shell: bash
       run: |
@@ -22,5 +26,5 @@ jobs:
       shell: bash
       run: |
         unzip -q *.zip -d linux
-        ./install-deps.sh
+        echo "Begin building the kernel"
         ./build-linux.sh linux/* tinyconfig
